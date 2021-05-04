@@ -1,0 +1,30 @@
+class Solution {
+    public int countGoodTriplets(int[] arr, int a, int b, int c) {
+         int i = 0;
+        int j = i+1;
+        int k = j+1;
+        int answer = 0;
+        // when arr.length == 3, i should be < 1
+        // when arr.length == 4, i should be < 2
+        // when arr.length == 5, i should be < 3
+        // so we can make "i < arr.length-2"          
+        while(i < arr.length-2){
+            if(Math.abs(arr[i] - arr[j]) <= a &&
+              Math.abs(arr[j] - arr[k]) <= b &&
+              Math.abs(arr[i] - arr[k]) <= c){
+                answer++;
+            }
+            k++;
+            if(k == arr.length){
+                j++;
+                k = j+1;
+            }
+            if(j == arr.length-1){
+                i++;
+                j = i+1;
+                k = j+1;
+            }
+        }
+        return answer;
+    }
+}
